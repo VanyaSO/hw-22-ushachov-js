@@ -1,51 +1,133 @@
-// Task #1
-// Реализовать рекурсивную функцию которая находит факториал переданного в нее числа
-// getFactorial(3) // в данном случае должна вернуть факториал числа 3! = 3 * 2 * 1
+'use strict';
 
-function getFactorial(num){
 
-    if(num === 0 || num === 1){
-        return 1;
+// indexOf
+const arrIndexOf = [2,4,32,6,23,4,3,2];
+
+const indexOf = (arrIndexOf, item) => {
+    console.log("//Task indexOf")
+    for(let i = 0; i < arrIndexOf.length; i += 1){
+        if(arrIndexOf[i] === item){
+            return  console.log(i);
+        }
     }
-
-    return num * getFactorial(num - 1);
+    return -1;
 }
 
-console.log('Task #1');
-console.log(getFactorial(3));
+indexOf(arrIndexOf,4);
 
 
-// Task #2
-// Реализовать рекурсивную функцию которая находит возводит число в степень.
-// Число которое нужно возвести в степень передается как первый аргумент в функцию
-// Степень передается как второй аргумент в функцию pow(num, degree)
+// lastIndexOf
 
-function pow(num, degree){
+const arrLastIndexOf = ['red','blue','green','lime','yellow'];
 
-    if(degree === 1){
-        return num;
+const lastIndexOf = ( arrLastIndexOf, item) => {
+    console.log('//Task lastIndexOf');
+    for ( let i = arrLastIndexOf.length; i > -1; i--) {
+        if ( arrLastIndexOf[i] === item) {
+            return console.log(i);
+        }
     }
-
-    return num * pow(num, degree - 1);
+    return -1;
 }
 
-console.log('Task #2');
-console.log(pow(3,5));
+lastIndexOf(arrLastIndexOf, 'lime');
 
-// Task #3
-// Рекурсивное суммирование
-// Задача: напишите рекурсивную функцию для вычисления суммы заданных положительных целых чисел a и b
-// без прямого использования оператора +.
 
-function sum(a, b){
+//findItem
 
-    if(a === 0){
-        return b;
+const arrFindItem = [ 1, 2, 3, 4, 5, 6, 7, 8, 9,10];
+
+const findItem = (arr , item) => {
+    console.log('//Task findItem');
+    for ( let i = 0; i < arr.length; i++) {
+        if ( item(arr[i]) ) {
+            return arr[i];
+        }
     }
-
-    return sum(a - 1,b + 1);
-
+    return undefined;
 }
 
-console.log('Task #3');
-console.log(sum(3,5));
+console.log(findItem(arrFindItem, (item) => {
+    return item === 3 + 7 ;
+}));
+
+
+//findItemIndex
+
+const arrFiItIn = [ 1, 2, 3, 4, 'number 5', 6, 7, 8, 9,10];
+
+const findItemIndex = (arr, index) => {
+    console.log('//Task findItemIndex');
+
+    for(let i = 0; i < arr.length; i += 1){
+        if( index(arr[i]) ){
+            return i;
+        }
+    }
+    return -1;
+}
+
+console.log(findItemIndex(arrFiItIn, (index) => {
+    return index === 1;
+}));
+
+
+
+//includes
+
+const arrIncludes = [ 1, 2, "3", 4, 'number 5', 6, 7, 8, 'red',10];
+
+const includes = (arr, element) => {
+    console.log('//Task includes');
+
+    for(let i = 0; i < arr.length; i += 1){
+        if(arr[i] === element){
+            return true;
+        }
+    }
+    return false;
+}
+
+console.log(includes(arrIncludes,"red"));
+
+
+
+
+//every
+const arrEvery = [ 1, 2, 4, 6, 7, 8,10];
+
+const every = (arr, callbackFunk) => {
+    console.log('//Task every');
+
+    for(let i = 0; i < arr.length; i += 1){
+        if( !callbackFunk(arr[i]) ){
+            return false;
+        }
+    }
+    return true;
+}
+
+console.log(every(arrEvery, (condition) => {
+    return condition > 0;
+}));
+
+
+
+//some
+const arrSome = [ 7,3,43,2,9, '100Balov'];
+
+const some = (arr, callbackFunk) => {
+    console.log('//Task some');
+
+    for(let i = 0; i < arr.length; i += 1){
+        if( callbackFunk(arr[i].length) ){
+            return true;
+        }
+    }
+    return false;
+}
+
+console.log(some(arrSome, (condition) => {
+    return condition > 3;
+}));
